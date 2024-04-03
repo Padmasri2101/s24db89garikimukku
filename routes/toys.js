@@ -1,9 +1,6 @@
 var express = require('express');
+const toys_controlers= require('../controllers/toys');
 var router = express.Router();
-
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('toys', { title: 'Search Results for Class toys' });
-});
-
+/* GET toyss */
+router.get('/', toys_controlers.toys_view_all_Page );
 module.exports = router;

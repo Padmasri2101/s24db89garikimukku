@@ -6,11 +6,7 @@ block content
   div.container-fluid
     div.row
       -
-        let results = [
-          { toys_type: 'dog', toys_size: 'Large', toys_price: 100 },
-          { toys_type: 'teddy bear', toys_size: 'Medium', toys_price: 800 },
-          { toys_type: 'hello kitty', toys_size: 'Small', toys_price: 1300 }
-        ]
+        let toys = results 
         
       each toys,index in results
         .col-sm-2(onclick=`buy(${index})`)

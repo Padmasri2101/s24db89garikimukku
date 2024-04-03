@@ -4,11 +4,14 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+var toys = require("./models/toys");
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var toysRouter = require('./routes/toys');
 var gridRouter = require('./routes/grid');
 var pickRouter = require('./routes/pick');
+var resourceRouter = require('./routes/resource');
 
 var app = express();
 
@@ -27,7 +30,55 @@ app.use('/users', usersRouter);
 app.use('/toys', toysRouter);
 app.use('/grid', gridRouter);
 app.use('/pick', pickRouter);
+app.use('/resource', resourceRouter);
 
+require('dotenv').config();
+const connectionString = process.env.MONGO_CON
+mongoose = require('mongoose');
+mongoose.connect(connectionString);
+
+//Get the default connection
+var db = mongoose.connection;
+//Bind connection to error event
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+db.once("open", function(){
+console.log("Connection to DB succeeded")
+
+});
+
+// We can seed the collection if needed on
+async function recreateDB(){
+// Delete everything
+await toys.deleteMany();
+let instance1 = new
+toys({toys_type:"dog", toys_size:'large',
+toys_price:100});
+instance1.save().then(doc=>{
+console.log("First object saved")}
+).catch(err=>{
+console.error(err)
+});
+
+let instance2 = new
+toys({toys_type:"teddy bear", toys_size:'medium',
+toys_price:800});
+instance2.save().then(doc=>{
+console.log("Second object saved")}
+).catch(err=>{
+console.error(err)
+});
+
+let instance3 = new toys({toys_type:"hello kitty", toys_size:'small',
+toys_price:1300});
+instance3.save().then(doc=>{
+console.log("Third object saved")}
+).catch(err=>{
+console.error(err)
+});
+
+}
+let reseed = true;
+if (reseed) {recreateDB();}
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -46,15 +97,3 @@ app.use(function(err, req, res, next) {
 });
 
 module.exports = app;
-
-require('dotenv').config();
-const connectionString = process.env.MONGO_CON
-mongoose = require('mongoose');
-mongoose.connect(connectionString);
-
-//Get the default connection
-var db = mongoose.connection;
-//Bind connection to error event
-db.on('error', console.error.bind(console, 'MongoDB connection error:'));
-db.once("open", function(){
-console.log("Connection to DB succeeded")});
