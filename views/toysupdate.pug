@@ -1,0 +1,39 @@
+extends layout
+block content
+  h1= title
+    - let toysid = toShow._id
+    - let toys_type = toShow.toys_type
+    - let toys_size = toShow.toys_size
+    - let toys_price = toShow.toys_price
+    div.row(class='mb-2')
+      div.mr-1 ID is
+      div #{toysid}
+    - let actionid = "/resource/toys/" + toysid
+    form(id='toysForm', action= actionid, method="PUT")
+      div.form-group
+        label.toysAttr(for='toys_type') toys type
+        input#toys_type(type='text', name='toys_type', )
+      div.form-group
+        label.toysAttr(for='toys_size') toys size
+        input#toys_size(type='text', name='toys_size',)
+      div.form-group
+        label.toysAttr(for='toys_price') toys price
+        input#toys_price(type='number', name='toys_price', )
+      input(type="submit")
+    script.
+      document.forms['toysForm'].addEventListener('submit', (event) => {
+        event.preventDefault();
+        // TODO do something here to show user that form is being submitted
+        fetch(event.target.action, {
+          method: 'PUT',
+          body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+        }).then((resp) => {
+          return resp.text(); //resp.json();or whatever the server sends
+        }).then((body) => {
+          alert("Update succeeded");
+          // TODO handle body
+        }).catch((error) => {
+          // TODO handle error
+          alert("Update failed: " + error);
+        });
+      });

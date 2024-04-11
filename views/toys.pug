@@ -11,8 +11,8 @@ block content
       each toys,index in results
         .col-sm-2(onclick=`buy(${index})`)
           p toys Type: #{toys.toys_type}
-          p Size: #{toys.toys_size}
-          p Price: $#{toys.toys_price.toFixed(2)}
+          p size: #{toys.toys_size}
+          p price: $#{toys.toys_price.toFixed(2)}
 
   a(href="/") Back to index
 

@@ -1,8 +1,25 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  padding: 100px;
+  font: 10px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
   color: #00B7FF;
 }
+
+.toysAttr {
+  background-color: rgb(235, 44, 15);
+  width: 120px;
+  }
+
+  .toysAttr{
+    background-color: rgb(165, 230, 208);
+    width: 120px;
+    display: inline-block;
+    padding: 10px 20px;
+    background-color:#00b7ff;
+    color: #17de2f;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  

@@ -1,0 +1,25 @@
+extends layout
+block content
+    h1= type
+    if (toShow == null)
+       h2 No instance to update 
+    else
+    - let toys_id = toShow._id
+    - let toys_type  = toShow.toys_type
+    - let toys_size = toShow.toys_size
+    - let toys_price = toShow.toys_price
+    div
+        div.row
+            div(class='toysAttr mr-3') toys ID is:
+            div #{toys_id}
+        div.row
+            div(class='toysAttr mr-3') toys_type  is:
+            div #{toys_type }
+        div.row
+            div(class='toysAttr mr-3') toys_size is:
+            div #{toys_size}
+        div.row
+            div(class='toysAttr mr-3') toys_price is:
+            div #{toys_price}
+ 
+ 
