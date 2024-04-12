@@ -1,22 +1,31 @@
 extends layout
-
+ 
 block content
   h1= title
-  
-  div.container-fluid
-    div.row
-      -
-        let toys = results 
-        
-      each toys,index in results
-        .col-sm-2(onclick=`buy(${index})`)
-          p toys Type: #{toys.toys_type}
-          p size: #{toys.toys_size}
-          p price: $#{toys.toys_price.toFixed(2)}
-
-  a(href="/") Back to index
-
+ 
+  - let items = results;
+  - let o;
   script.
-    function buy(index) {
-        alert(`You purchased item ${index}`);
+    function buy(x){
+      alert('purchased item ' + x)
+   }
+  div(class='container-fluid')
+    //a(class="btn btn-info" href="/toys/create") Create
+    div(class='row m-1')
+    div(class="row row-cols-1 row-cols-sm-4 g-6")
+      each item,index in items
+        - let destination = `dispatch(\"/toys/update?id=${item._id}\")`
+        //- let details = `dispatch(\"/cat/detail?id=${item._id}\")`
+     
+        div(class="catd text-black mb-3" class='col' class='catd' class='catd-body' class='catd-text' onclick='buy('+index+')') Item Type is #{item.toys_type}(Item size is #{item.toys_size})price is #{item.toys_cost}
+          <br><br>
+          //span(class="btn btn-secondary", onclick= details) Details
+          <br>
+          //a(class="btn btn-danger", href="/cat/delete/?id="+item._id) Delete
+          <br>
+          button.btn( class="btn-success ml-1", onclick= destination) Update
+ 
+  script.
+    function dispatch(path){
+      window.location.href=path
     }
