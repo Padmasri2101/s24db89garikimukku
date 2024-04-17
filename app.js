@@ -104,7 +104,7 @@ async function recreateDB() {
 
   let instance3 = new toys({
     toys_type: "hello kitty", toys_size: 'small',
-    toys_price: 1300
+    toys_price: 900
   });
   instance3.save().then(doc => {
     console.log("Third object saved")
