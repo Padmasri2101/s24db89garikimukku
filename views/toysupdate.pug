@@ -1,6 +1,9 @@
 extends layout
 block content
   h1= title
+   if (toShow == null)
+       h2 No instance to update 
+    else
     - let toysid = toShow._id
     - let toys_type = toShow.toys_type
     - let toys_size = toShow.toys_size

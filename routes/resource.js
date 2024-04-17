@@ -18,4 +18,6 @@ router.get('/toys/:id', toys_controller.toys_detail);
 // GET request for list of all toys items.
 router.get('/toys', toys_controller.toys_list);
 module.exports = router;
+/* GET update toys page */
+router.get('/update', toys_controller.toys_update_Page);
 
